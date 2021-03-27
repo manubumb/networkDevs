@@ -20,7 +20,7 @@ public class networkDevs {
                         for (int j = i; j < 256; j++){
                             temp = InetAddress.getByName(host+j);
                             if (temp.isReachable(1000)){
-                                System.out.println(host+j + /*" (" + temp.getCanonicalHostName() +*/ " is reachable");
+                                System.out.println(host+j + /*" (" + temp.getCanonicalHostName() +*/ " is reachable " + (new Date()));
                                 for (int k = 0; k < 5; k++) {
                                     java.awt.Toolkit.getDefaultToolkit().beep();
                                     Thread.sleep(800);
