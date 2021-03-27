@@ -21,6 +21,14 @@ public class networkDevs {
                             temp = InetAddress.getByName(host+j);
                             if (temp.isReachable(1000)){
                                 System.out.println(host+j + /*" (" + temp.getCanonicalHostName() +*/ " is reachable " + (new Date()));
+                                try {
+                                    FileWriter fw = new FileWriter("networkDevs.log", true);
+                                    fw.write(host+j + " is reachable " + (new Date()) + "\r\n");
+                                    fw.close();
+                                } catch (IOException e) {
+                                    System.out.println("Error opening networkDevs.log");
+                                }
+
                                 for (int k = 0; k < 5; k++) {
                                     java.awt.Toolkit.getDefaultToolkit().beep();
                                     Thread.sleep(800);
