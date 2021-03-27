@@ -3,6 +3,16 @@ import java.net.*;
 import java.util.Date;
 
 public class networkDevs {
+    static void log(String msg) {
+        try {
+            FileWriter fw = new FileWriter("networkDevs.log", true);
+            fw.write(msg);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error opening networkDevs.log");
+        }
+    }
+
 	public static void main(String args[]) throws UnknownHostException, IOException, InterruptedException {
         int i = 0;
         String host = "192.168.0.";
@@ -20,14 +30,8 @@ public class networkDevs {
                         for (int j = i; j < 256; j++){
                             temp = InetAddress.getByName(host+j);
                             if (temp.isReachable(1000)){
-                                System.out.println(host+j + /*" (" + temp.getCanonicalHostName() +*/ " is reachable " + (new Date()));
-                                try {
-                                    FileWriter fw = new FileWriter("networkDevs.log", true);
-                                    fw.write(host+j + " is reachable " + (new Date()) + "\r\n");
-                                    fw.close();
-                                } catch (IOException e) {
-                                    System.out.println("Error opening networkDevs.log");
-                                }
+                                System.out.println(host+j + /*" (" + temp.getCanonicalHostName() +*/ " detected " + (new Date()));
+                                log((new Date()) + "\t" + host+j + " detected\r\n");
 
                                 for (int k = 0; k < 5; k++) {
                                     java.awt.Toolkit.getDefaultToolkit().beep();
