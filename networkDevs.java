@@ -40,7 +40,7 @@ public class networkDevs {
                             // get an InetAddress so we can call isReachable() with it
                             temp = InetAddress.getByName(host+j);
                             try {
-                                if (temp.isReachable(1000)){
+                                if (temp.isReachable(500)){
                                     // got a device!  Display output and log it!
                                     System.out.println((new Date()) +" "+ host+j + " detected");
                                     log((new Date()) + "\t" + host+j + " detected\r\n");
