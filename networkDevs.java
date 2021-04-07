@@ -71,8 +71,10 @@ public class networkDevs {
                                         MimeMessage msg = new MimeMessage(session);
                                         // set the message content here
                                         // msg.setFrom(new InternetAddress("@gmail.com"));
-                                        // REPLACE recipient
+                                        // REPLACE recipient email or phone number
+//                                        msg.addRecipient(Message.RecipientType.TO, new InternetAddress("@gmail.com"));
                                         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("@gmail.com", false));
+//                                        msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse("@txt.att.net", false));
                                         msg.setSubject("Device detected: " + host+j);
                                         msg.setText((new Date()) +" "+host+j + " detected.");
                                         msg.setHeader("X-Mailer", mailer);
