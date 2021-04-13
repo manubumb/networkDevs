@@ -21,6 +21,22 @@ public class networkDevs {
         }
     }
 
+    // Helper function to ping an IPv4 address
+    // turns out I didn't need this, but keeping the code in here for future reference
+    static void ping(String ip) {
+        try {
+            Process p = Runtime.getRuntime().exec("ping "+ip);
+            BufferedReader inputStream = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+            String s = "";
+            while ((s = inputStream.readLine()) != null) {
+                System.out.println(s);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String args[]) throws UnknownHostException, IOException, InterruptedException {
         int i = 0;
         String host = "192.168.0.";
@@ -67,8 +83,9 @@ public class networkDevs {
         while (true) {
             for (int j = i; j < 256; j++) {
                 // get an InetAddress so we can call isReachable() with it
-                temp = InetAddress.getByName(host + j);
+                temp = InetAddress.getByName(host+j);
                 try {
+                    //ping(host+j);
                     if (temp.isReachable(500)) {
                         // got a device! Display output and log it!
                         System.out.println((new Date()) + " " + host + j + " detected");
